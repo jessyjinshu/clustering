@@ -89,17 +89,20 @@ def generate_k(data_set, k):
     Given `data_set`, which is an array of arrays,
     return a random set of k points from the data_set
     """
+    if k<= 0 or k > len(data_set):
+        raise ValueError("k is not valid")
     return random.sample(data_set,k)
 
 
 def get_list_from_dataset_file(dataset_file):
     data = []
 
-    with open(dataset_file,"r") as f:
-        for l in f.readlines():
+    with open(dataset_file) as f:
+        datas = csv.reader(f)
+        for l in datas:
             row = []
-            for n in range(len(l)):
-                elem = int(l[n])
+            for n in l:
+                elem = int(n)
                 row.append(elem)
             data.append(row)
     return data
