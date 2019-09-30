@@ -37,14 +37,15 @@ def update_centers(data_set, assignments):
     """
 
 
-    new_set = []
+    new_set = defaultdict(list)
     center = []
     
+    
 
-    for point, assignment in zip(data_set,assignments):
+    for (assignment,point)in zip(assignments,data_set):
         new_set[assignment].append(point)
     
-    for i in range(len(new_set)):
+    for i in new_set.keys():
         center.append(point_avg(new_set[i]))
 
 
